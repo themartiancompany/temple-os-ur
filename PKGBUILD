@@ -52,6 +52,9 @@ _zip_filename="Windows%20XP%20Starter.zip"
 source=(
   "${_archive}/${_ns}/${_zip_filename}"
 )
+sha256sums=(
+  "SKIP"
+)
 
 # shellcheck disable=SC2154
 package() {
