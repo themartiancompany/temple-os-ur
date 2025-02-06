@@ -25,7 +25,7 @@
 # shellcheck disable=SC2034
 _pkg="windows-xp"
 _variant="starter-edition"
-_pkgbase="${_pkg}-${_variant}-qemu"
+_pkgbase="${_pkg}-${_variant}"
 pkgname=(
   "${_pkgbase}"
 )

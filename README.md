@@ -1,4 +1,4 @@
-# `windows-xp-starter-edition-qemu`
+# `windows-xp-starter-edition`
 
 universal recipe for [user repo](../themartiancompany/ur).
 
