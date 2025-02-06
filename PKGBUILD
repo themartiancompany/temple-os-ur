@@ -72,5 +72,5 @@ package() {
     "${pkgdir}/var/lib/libvirt/images"
   mv \
     "${srcdir}/Windows XP Starter Edition.qcow2" \
-    "${pkgdir}/var/lib/libvirt/images"
+    "${pkgdir}/var/lib/libvirt/images/${pkgname}.qcow2"
 }
