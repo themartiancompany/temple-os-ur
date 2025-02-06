@@ -23,6 +23,8 @@
 # Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 
 # shellcheck disable=SC2034
+_archive="true"
+evmfs="false"
 _pkg="windows-xp"
 _variant="starter-edition"
 _pkgbase="${_pkg}-${_variant}"
@@ -46,18 +48,28 @@ makedepends=(
 )
 checkdepends=(
 )
-_archive="https://archive.org/download"
+_archive_http="https://archive.org/download"
 _ns="windowsxpstarter_limboqemu"
 _zip_filename="Windows%20XP%20Starter.zip"
+_zip_sum="3bf68530f8473b961410ca8fc0a1649487362f6bf4c9c972821af852f8551f39"
+if [[ "${_archive}" == "true" ]]; then
+  _src="${pkgname}-${pkgver}.zip::${_archive_http}/${_ns}/${_zip_filename}"
+elif [[ "${_evmfs}" == "true" ]]; then
+  echo \
+    "S O O N"
+fi
 source=(
-  "${_archive}/${_ns}/${_zip_filename}"
+  "${_src}"
 )
 sha256sums=(
-  "SKIP"
+  "${_zip_sum}"
 )
 
 # shellcheck disable=SC2154
 package() {
+  install \
+    -vdm755 \
+    "${pkgdir}/var/lib/libvirt/images"
   mv \
     "${srcdir}/Windows XP Starter Edition.qcow2" \
     "${pkgdir}/var/lib/libvirt/images"
