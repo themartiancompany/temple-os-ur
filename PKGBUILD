@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0
 
 #    ----------------------------------------------------------------------
-#    Copyright © 2022, 2023, 2024, 2025  Pellegrino Prevete
+#    Copyright © 2022, 2023, 2024, 2025, 2026  Pellegrino Prevete
 #
 #    All rights reserved
 #    ----------------------------------------------------------------------
@@ -19,58 +19,69 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Maintainer: Truocolo <truocolo@aol.com>
-# Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
+# Maintainers:
+#   Truocolo
+#     <truocolo@aol.com>
+#     <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+#   Pellegrino Prevete (dvorak)
+#     <pellegrinoprevete@gmail.com>
+#     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
 # shellcheck disable=SC2034
 _archive="true"
 evmfs="false"
-_pkg="windows-xp"
-_variant="starter-edition"
-_pkgbase="${_pkg}-${_variant}"
+_pkg=temple-os
+_pkgbase="${_pkg}"
 pkgname=(
   "${_pkgbase}"
 )
-pkgver="5.1.2600.7208"
+pkgver="1.0-terry"
 pkgrel=1
-pkgdesc="Operating system by Microsoft Corporation."
+_pkgdesc=(
+  "Operating system written Terry A. Davis."
+)
 arch=(
   'any'
 )
 license=(
-  'EULA'
+  'CC0'
 )
-url="https://web.archive.org/web/20030621141136/http://www.microsoft.com:80/italy/windowsxp/default.asp"
+url="https://templeos.org"
 provides=(
-  "${_pkg}"
+  "j-operating-system"
+  "j-os"
+  "lose-thos"
+  "sparrow-os"
 )
 makedepends=(
 )
 checkdepends=(
 )
-_archive_http="https://archive.org/download"
-_ns="windowsxpstarter_limboqemu"
-_zip_filename="Windows%20XP%20Starter.zip"
-_zip_sum="3bf68530f8473b961410ca8fc0a1649487362f6bf4c9c972821af852f8551f39"
-if [[ "${_archive}" == "true" ]]; then
-  _src="${pkgname}-${pkgver}.zip::${_archive_http}/${_ns}/${_zip_filename}"
-elif [[ "${_evmfs}" == "true" ]]; then
-  echo \
-    "S O O N"
-fi
+_tarname="${_pkg}-${pkgver}"
+_tarfile="${_tarname}.tar.xz"
+_sum="aff80f250eeb19cbc191a3434caab268d0e660c43a2989c3bf9544eb25fe5ba8"
+_sig_sum="258ce911bb8f69386a8f59318b92be30f86d00f3663387764e196d6f82bf3050"
+_namespace="0x5179A7Ff1E17688489152689a01640c42550A9F2"
+_net="100"
+_fs="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
+_dir="evmfs://${_net}/${_fs}/${_namespace}"
+_uri="${_dir}/${_sum}"
+_sig_uri="${_dir}/${_sig_sum}"
 source=(
-  "${_src}"
+  "${_tarfile}::${_uri}"
+  "${_tarfile}.sig::${_sig_uri}"
 )
 sha256sums=(
-  "${_zip_sum}"
+  "${_sum}"
+  "${_sig_sum}"
 )
 
 # shellcheck disable=SC2154
 package() {
   install \
     -vdm755 \
-    "${pkgdir}/var/lib/libvirt/images"
+    "${pkgdir}/usr/share/images"
   mv \
-    "${srcdir}/Windows XP Starter Edition.qcow2" \
-    "${pkgdir}/var/lib/libvirt/images/${pkgname}.qcow2"
+    "${srcdir}/TempleOS.ISO" \
+    "${pkgdir}/usr/share/images/${_tarname}.iso"
 }
