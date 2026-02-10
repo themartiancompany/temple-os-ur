@@ -105,5 +105,5 @@ package() {
     "${pkgdir}/usr/share/images"
   mv \
     "${srcdir}/TempleOS.ISO" \
-    "${pkgdir}/usr/share/images/${_tarname}.iso"
+    "${pkgdir}/usr/share/images/${_tarname}"
 }
