@@ -54,7 +54,7 @@ _pkgbase="${_pkg}"
 pkgname=(
   "${_pkgbase}"
 )
-pkgver="1.0-terry"
+pkgver="1.0.iso"
 pkgrel=1
 _pkgdesc=(
   "Operating system written Terry A. Davis."
@@ -79,7 +79,7 @@ checkdepends=(
 _tarname="${_pkg}-${pkgver}"
 _tarfile="${_tarname}.tar.xz"
 _sum="aff80f250eeb19cbc191a3434caab268d0e660c43a2989c3bf9544eb25fe5ba8"
-_sig_sum="258ce911bb8f69386a8f59318b92be30f86d00f3663387764e196d6f82bf3050"
+_sig_sum="338a65650c150ebf5dae4af4cdcbfaecc1c3445873c4bb6651ae1f513f20f4ee"
 _namespace="0x5179A7Ff1E17688489152689a01640c42550A9F2"
 _net="100"
 _fs="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
