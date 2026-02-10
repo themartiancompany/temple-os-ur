@@ -28,8 +28,27 @@
 #     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
 # shellcheck disable=SC2034
-_archive="true"
-evmfs="false"
+_os="$(
+  uname \
+    -o)"
+_evmfs_available="$(
+  command \
+    -v \
+    "evmfs" || \
+    true)"
+if [[ ! -v "_evmfs" ]]; then
+  if [[ "${_evmfs_available}" != "" ]]; then
+    _evmfs="true"
+  elif [[ "${_evmfs_available}" == "" ]]; then
+    _evmfs="false"
+  fi
+fi
+if [[ "${_evmfs}" == "false" ]]; then
+  _msg=(
+    "The EVMFS is needed to build"
+    "this package."
+  )
+fi
 _pkg=temple-os
 _pkgbase="${_pkg}"
 pkgname=(
